@@ -61,6 +61,11 @@ class dtr0xx_ioGPIOPin : public GPIOPin, public Parented<dtr0xx_ioComponent> {
   void set_pin(uint16_t pin) { pin_ = pin; }
   void set_inverted(bool inverted) { inverted_ = inverted; }
 
+  gpio::Flags get_flags() const override {
+    // For input from a shift register, the flag should typically be FLAG_INPUT.
+    return gpio::FLAG_INPUT;
+  }
+
  protected:
   uint16_t pin_;
   bool inverted_;
